@@ -13,6 +13,7 @@
 		ECB0029520F89D72005593CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECB0029420F89D72005593CB /* Assets.xcassets */; };
 		ECB0029820F89D72005593CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECB0029620F89D72005593CB /* LaunchScreen.storyboard */; };
 		ECB002A320F89D72005593CB /* MoviesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB002A220F89D72005593CB /* MoviesTests.swift */; };
+		ECB002AE20F89E4F005593CB /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB002AD20F89E4F005593CB /* Movie.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		ECB0029E20F89D72005593CB /* MoviesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MoviesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECB002A220F89D72005593CB /* MoviesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTests.swift; sourceTree = "<group>"; };
 		ECB002A420F89D72005593CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ECB002AD20F89E4F005593CB /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		ECB0028C20F89D6E005593CB /* Movies */ = {
 			isa = PBXGroup;
 			children = (
+				ECB002AF20F89E54005593CB /* Model */,
 				ECB0028D20F89D6E005593CB /* AppDelegate.swift */,
 				ECB0028F20F89D6E005593CB /* ViewController.swift */,
 				ECB0029120F89D6E005593CB /* Main.storyboard */,
@@ -94,6 +97,14 @@
 				ECB002A420F89D72005593CB /* Info.plist */,
 			);
 			path = MoviesTests;
+			sourceTree = "<group>";
+		};
+		ECB002AF20F89E54005593CB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ECB002AD20F89E4F005593CB /* Movie.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -199,6 +210,7 @@
 			files = (
 				ECB0029020F89D6E005593CB /* ViewController.swift in Sources */,
 				ECB0028E20F89D6E005593CB /* AppDelegate.swift in Sources */,
+				ECB002AE20F89E4F005593CB /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
