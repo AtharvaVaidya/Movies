@@ -8,12 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		ECB0028E20F89D6E005593CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0028D20F89D6E005593CB /* AppDelegate.swift */; };
-		ECB0029020F89D6E005593CB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0028F20F89D6E005593CB /* ViewController.swift */; };
 		ECB0029320F89D6E005593CB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECB0029120F89D6E005593CB /* Main.storyboard */; };
 		ECB0029520F89D72005593CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECB0029420F89D72005593CB /* Assets.xcassets */; };
 		ECB0029820F89D72005593CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECB0029620F89D72005593CB /* LaunchScreen.storyboard */; };
 		ECB002A320F89D72005593CB /* MoviesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB002A220F89D72005593CB /* MoviesTests.swift */; };
 		ECB002AE20F89E4F005593CB /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB002AD20F89E4F005593CB /* Movie.swift */; };
+		ECB002B120F8BD44005593CB /* MoviesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB002B020F8BD44005593CB /* MoviesListTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,7 +29,6 @@
 /* Begin PBXFileReference section */
 		ECB0028A20F89D6E005593CB /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECB0028D20F89D6E005593CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ECB0028F20F89D6E005593CB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		ECB0029220F89D6E005593CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ECB0029420F89D72005593CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ECB0029720F89D72005593CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -38,6 +37,7 @@
 		ECB002A220F89D72005593CB /* MoviesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesTests.swift; sourceTree = "<group>"; };
 		ECB002A420F89D72005593CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECB002AD20F89E4F005593CB /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
+		ECB002B020F8BD44005593CB /* MoviesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,7 +81,7 @@
 			children = (
 				ECB002AF20F89E54005593CB /* Model */,
 				ECB0028D20F89D6E005593CB /* AppDelegate.swift */,
-				ECB0028F20F89D6E005593CB /* ViewController.swift */,
+				ECB002B220F8BD4A005593CB /* UI */,
 				ECB0029120F89D6E005593CB /* Main.storyboard */,
 				ECB0029420F89D72005593CB /* Assets.xcassets */,
 				ECB0029620F89D72005593CB /* LaunchScreen.storyboard */,
@@ -105,6 +105,14 @@
 				ECB002AD20F89E4F005593CB /* Movie.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		ECB002B220F8BD4A005593CB /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				ECB002B020F8BD44005593CB /* MoviesListTableViewController.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -208,8 +216,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ECB0029020F89D6E005593CB /* ViewController.swift in Sources */,
 				ECB0028E20F89D6E005593CB /* AppDelegate.swift in Sources */,
+				ECB002B120F8BD44005593CB /* MoviesListTableViewController.swift in Sources */,
 				ECB002AE20F89E4F005593CB /* Movie.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
