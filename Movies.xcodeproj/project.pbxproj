@@ -14,8 +14,10 @@
 		ECB002A320F89D72005593CB /* MoviesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB002A220F89D72005593CB /* MoviesTests.swift */; };
 		ECB002AE20F89E4F005593CB /* Movie.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB002AD20F89E4F005593CB /* Movie.swift */; };
 		ECB002B120F8BD44005593CB /* MoviesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB002B020F8BD44005593CB /* MoviesListTableViewController.swift */; };
-		ECB002C220F8E141005593CB /* MoviesListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB002C120F8E141005593CB /* MoviesListModel.swift */; };
 		ECB002C420F8E232005593CB /* TableViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB002C320F8E232005593CB /* TableViewModelProtocol.swift */; };
+		ECB002C820F8E9E9005593CB /* TableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB002C720F8E9E9005593CB /* TableViewModel.swift */; };
+		ECB002CA20F8EBF1005593CB /* TableViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB002C920F8EBF1005593CB /* TableViewModels.swift */; };
+		ECB002CC20F8EDC4005593CB /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB002CB20F8EDC4005593CB /* MovieTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,8 +42,10 @@
 		ECB002A420F89D72005593CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		ECB002AD20F89E4F005593CB /* Movie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Movie.swift; sourceTree = "<group>"; };
 		ECB002B020F8BD44005593CB /* MoviesListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListTableViewController.swift; sourceTree = "<group>"; };
-		ECB002C120F8E141005593CB /* MoviesListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListModel.swift; sourceTree = "<group>"; };
 		ECB002C320F8E232005593CB /* TableViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModelProtocol.swift; sourceTree = "<group>"; };
+		ECB002C720F8E9E9005593CB /* TableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModel.swift; sourceTree = "<group>"; };
+		ECB002C920F8EBF1005593CB /* TableViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewModels.swift; sourceTree = "<group>"; };
+		ECB002CB20F8EDC4005593CB /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,7 +119,9 @@
 			isa = PBXGroup;
 			children = (
 				ECB002B020F8BD44005593CB /* MoviesListTableViewController.swift */,
-				ECB002C120F8E141005593CB /* MoviesListModel.swift */,
+				ECB002CB20F8EDC4005593CB /* MovieTableViewCell.swift */,
+				ECB002C720F8E9E9005593CB /* TableViewModel.swift */,
+				ECB002C920F8EBF1005593CB /* TableViewModels.swift */,
 				ECB002C320F8E232005593CB /* TableViewModelProtocol.swift */,
 			);
 			path = UI;
@@ -223,8 +229,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				ECB0028E20F89D6E005593CB /* AppDelegate.swift in Sources */,
-				ECB002C220F8E141005593CB /* MoviesListModel.swift in Sources */,
 				ECB002B120F8BD44005593CB /* MoviesListTableViewController.swift in Sources */,
+				ECB002CC20F8EDC4005593CB /* MovieTableViewCell.swift in Sources */,
+				ECB002C820F8E9E9005593CB /* TableViewModel.swift in Sources */,
+				ECB002CA20F8EBF1005593CB /* TableViewModels.swift in Sources */,
 				ECB002C420F8E232005593CB /* TableViewModelProtocol.swift in Sources */,
 				ECB002AE20F89E4F005593CB /* Movie.swift in Sources */,
 			);
