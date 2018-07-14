@@ -26,32 +26,49 @@ public class Service: ServiceProtocol
         self.headers = self.configuration.headers // fillup with initial headers
     }
     
+    public init()
+    {
+        self.configuration = ServiceConfig.appConfig()
+        self.headers = self.configuration.headers
+    }
+    
     public func execute(request: RequestProtocol, _ success: @escaping (Data) -> (), _ failure: @escaping (NetworkError) -> ())
     {
         do
         {
             let urlRequest = try request.urlRequest(in: self)
-            URLSession.shared.dataTask(with: urlRequest)
-            { (data, response, error) in
-                
-                let parsedResponse = Response(response: response, data: data, error: error as NSError?, request: request)
-                
-                switch parsedResponse.type
-                {
-                case .success: // success
-                    guard let data = data else { failure(NetworkError.error(parsedResponse)); return }
-                    success(data)
-                case .error: // failure
-                    failure(NetworkError.error(parsedResponse))
-                case .noResponse:  // no response
-                    failure(NetworkError.noResponse(parsedResponse))
+            
+            let context = request.context ?? DispatchQueue.global(qos: .default)
+            
+            context.async
+            {
+                let completionHandler =
+                { (data: Data?, response: URLResponse?, error: Error?) in
+                    
+                    let parsedResponse = Response(response: response, data: data, error: error as NSError?, request: request)
+                    
+                    switch parsedResponse.type
+                    {
+                    case .success: // success
+                        guard let data = data else { failure(NetworkError.error(parsedResponse)); return }
+                        success(data)
+                    case .error: // failure
+                        failure(NetworkError.error(parsedResponse))
+                    case .noResponse:  // no response
+                        failure(NetworkError.noResponse(parsedResponse))
+                    }
+                    
                 }
                 
-            }.resume()
+                let dataTask = URLSession.shared.dataTask(with: urlRequest, completionHandler: completionHandler)
+        
+                dataTask.resume()
+            }
         }
+            
         catch
         {
-            
+            failure(NetworkError.invalidRequest(request))
         }
     }
 }

@@ -17,10 +17,12 @@ public enum NetworkError: Error
     case dataIsNotEncodable(_: Any)
     case stringFailedToDecode(_: Data, encoding: String.Encoding)
     case invalidURL(_: String)
+    case invalidRequest(_: RequestProtocol)
     case error(_: ResponseProtocol)
     case noResponse(_: ResponseProtocol)
     case missingEndpoint
     case failedToParseJSON(_: NSDictionary, _: ResponseProtocol)
     case failedToParseJSONDictionary(_:[String : Any?])
     case failedToParseJSONData(_:Data)
+    case failedToParseImageData(_:Data)
 }

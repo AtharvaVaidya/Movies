@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Movie: Codable
+public struct Movie: Codable
 {
     let title:       String
     let overview:    String
@@ -26,7 +26,7 @@ struct Movie: Codable
 
 extension Movie: CustomStringConvertible
 {
-    var description: String
+    public var description: String
     {
         return title
     }

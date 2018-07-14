@@ -8,11 +8,9 @@
 
 import Foundation
 
-struct MovieServiceParser: ResponseParser
-{
-    typealias T = [Movie]
-    
-    func parseJSON(data: Data) throws -> [Movie]
+public class MovieParser: Parser<[Movie]>
+{    
+    override public func parse(data: Data) throws -> [Movie]
     {
         do
         {

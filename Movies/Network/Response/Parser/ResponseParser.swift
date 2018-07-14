@@ -8,9 +8,10 @@
 
 import Foundation
 
-public protocol ResponseParser
+public class Parser<T>
 {
-    associatedtype T
-    
-    func parseJSON(data: Data) throws -> T
+    public func parse(data: Data) throws -> T
+    {
+        throw NetworkError.failedToParseJSONData(data)
+    }
 }
