@@ -31,6 +31,8 @@
 		ECB002F820F9C140005593CB /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB002F720F9C140005593CB /* Extensions.swift */; };
 		ECB002FA20F9C1E6005593CB /* ResponseProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB002F920F9C1E6005593CB /* ResponseProtocol.swift */; };
 		ECB6CFCD20F9CADB00D852FF /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6CFCC20F9CADB00D852FF /* Request.swift */; };
+		ECB6CFCF20F9E90700D852FF /* ResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6CFCE20F9E90700D852FF /* ResponseParser.swift */; };
+		ECB6CFD120F9EBEF00D852FF /* MoviesServiceParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6CFD020F9EBEE00D852FF /* MoviesServiceParser.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +74,8 @@
 		ECB002F720F9C140005593CB /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		ECB002F920F9C1E6005593CB /* ResponseProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseProtocol.swift; sourceTree = "<group>"; };
 		ECB6CFCC20F9CADB00D852FF /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
+		ECB6CFCE20F9E90700D852FF /* ResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseParser.swift; sourceTree = "<group>"; };
+		ECB6CFD020F9EBEE00D852FF /* MoviesServiceParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesServiceParser.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -171,10 +175,12 @@
 		ECB002E020F91AAD005593CB /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				ECB002ED20F92759005593CB /* Response.swift */,
+				ECB6CFCE20F9E90700D852FF /* ResponseParser.swift */,
+				ECB6CFD020F9EBEE00D852FF /* MoviesServiceParser.swift */,
 				ECB002F920F9C1E6005593CB /* ResponseProtocol.swift */,
 				ECB002DE20F91AA8005593CB /* HTTPMethod.swift */,
 				ECB002F520F9C104005593CB /* NetworkError.swift */,
-				ECB002ED20F92759005593CB /* Response.swift */,
 				ECB002EF20F9BFC0005593CB /* RequestProtocol.swift */,
 				ECB6CFCC20F9CADB00D852FF /* Request.swift */,
 				ECB002F120F9C092005593CB /* RequestBody.swift */,
@@ -292,6 +298,7 @@
 				ECB002E820F920DB005593CB /* GlobalAliases.swift in Sources */,
 				ECB002C820F8E9E9005593CB /* TableViewModel.swift in Sources */,
 				ECB6CFCD20F9CADB00D852FF /* Request.swift in Sources */,
+				ECB6CFD120F9EBEF00D852FF /* MoviesServiceParser.swift in Sources */,
 				ECB002F820F9C140005593CB /* Extensions.swift in Sources */,
 				ECB002F020F9BFC0005593CB /* RequestProtocol.swift in Sources */,
 				ECB002EC20F923DE005593CB /* Service.swift in Sources */,
@@ -303,6 +310,7 @@
 				ECB002C420F8E232005593CB /* TableViewModelProtocol.swift in Sources */,
 				ECB002AE20F89E4F005593CB /* Movie.swift in Sources */,
 				ECB002F220F9C092005593CB /* RequestBody.swift in Sources */,
+				ECB6CFCF20F9E90700D852FF /* ResponseParser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

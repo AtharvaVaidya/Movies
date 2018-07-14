@@ -21,4 +21,6 @@ public enum NetworkError: Error
     case noResponse(_: ResponseProtocol)
     case missingEndpoint
     case failedToParseJSON(_: NSDictionary, _: ResponseProtocol)
+    case failedToParseJSONDictionary(_:[String : Any?])
+    case failedToParseJSONData(_:Data)
 }
