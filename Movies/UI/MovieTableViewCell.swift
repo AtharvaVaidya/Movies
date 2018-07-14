@@ -15,26 +15,62 @@ class MovieTableViewCell: UITableViewCell
     let movieOverviewTextView:  UITextView   = UITextView()
     let releaseDateLabel:       UILabel      = UILabel()
     
+    var movie: Movie
+    {
+        didSet
+        {
+            update()
+        }
+    }
+    
+    private var hasAppliedConstraints: Bool = false
+    
     init(movie: Movie)
     {
-        super.init(style: .default, reuseIdentifier: String(describing: MovieTableViewCell.self))
+        self.movie = movie
+
+        super.init(style: .default, reuseIdentifier: MovieTableViewCell.identifier)
     }
     
     required init?(coder aDecoder: NSCoder)
     {
-        fatalError("init(coder:) has not been implemented")
+        return nil
     }
     
-    override func awakeFromNib()
+    func setup()
     {
-        super.awakeFromNib()
-        // Initialization code
+        
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool)
+    
+    func update()
     {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        
+    }
+    
+    override func updateConstraints()
+    {
+        if hasAppliedConstraints { return }
+        
+        var contentViewConstraints: [NSLayoutConstraint] = []
+        
+        contentViewConstraints.append(posterImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 5))
+        contentViewConstraints.append(posterImageView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 5))
+        contentViewConstraints.append(posterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 8))
+        contentViewConstraints.append(posterImageView.widthAnchor.constraint(equalToConstant: 135))
+        
+        contentViewConstraints.append(movieTitleLabel.leadingAnchor.constraint(equalTo: posterImageView.trailingAnchor, constant: 5))
+        contentViewConstraints.append(movieTitleLabel.topAnchor.constraint(equalTo: posterImageView.topAnchor, constant: 5))
+        contentViewConstraints.append(movieTitleLabel.trailingAnchor.constraint(lessThanOrEqualTo: contentView.trailingAnchor, constant: 5))
+        
+        contentViewConstraints.append(releaseDateLabel.topAnchor.constraint(equalTo: movieTitleLabel.bottomAnchor, constant: 5))
+        contentViewConstraints.append(releaseDateLabel.leadingAnchor.constraint(equalTo: movieTitleLabel.leadingAnchor))
+        
+        contentViewConstraints.append(movieOverviewTextView.leadingAnchor.constraint(equalTo: movieTitleLabel.leadingAnchor))
+        contentViewConstraints.append(movieOverviewTextView.topAnchor.constraint(equalTo: releaseDateLabel.bottomAnchor, constant: 15))
+        contentViewConstraints.append(movieOverviewTextView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: 5))
+        
+        NSLayoutConstraint.activate(contentViewConstraints)
+        
+        super.updateConstraints()
     }
 }

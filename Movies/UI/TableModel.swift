@@ -12,10 +12,12 @@ struct TableModel<T>: TableModelProtocol
 {
     typealias Data = T
     
-    var data: [T]
+    var data: [T] = []
     
     init(data: [T])
     {
         self.data = data
     }
+    
+    init() {}
 }

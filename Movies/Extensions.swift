@@ -6,7 +6,15 @@
 //  Copyright © 2018 Atharva vaidya. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+extension UITableViewCell
+{
+    static var identifier: String
+    {
+        return String(describing: MovieTableViewCell.self)
+    }
+}
 
 public extension Dictionary where Key == String, Value == Any?
 {
@@ -33,8 +41,8 @@ public extension Dictionary where Key == String, Value == Any?
     
 }
 
-public extension String {
-    
+public extension String
+{
     /// Fill up a string by replacing values in specified placeholders
     ///
     /// - Parameter dict: dict to use
@@ -56,5 +64,13 @@ public extension String {
         guard let f = fields else { return self }
         return try f.urlEncodedString(base: self)
     }
-    
+}
+
+extension Collection
+{
+    /// Returns the element at the specified index iff it is within bounds, otherwise nil.
+    subscript (safe index: Index) -> Element?
+    {
+        return indices.contains(index) ? self[index] : nil
+    }
 }

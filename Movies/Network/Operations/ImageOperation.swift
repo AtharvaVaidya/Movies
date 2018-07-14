@@ -16,7 +16,7 @@ class ImageOperation: Operation<UIImage>
     {
         self.path = path
         
-        guard let url = URL(string: "​https://image.tmdb.org/t/p/w500")
+        guard let url = URL.init(string: "https://image.tmdb.org/t/p/w185")
         else
         {
             fatalError("could not initialize base url for Image Service")
@@ -31,5 +31,13 @@ class ImageOperation: Operation<UIImage>
     override func parser() -> Parser<UIImage>
     {
         return ImageParser()
+    }
+}
+
+class GetPoster: ImageOperation
+{
+    init(movie: Movie)
+    {
+        super.init(path: movie.posterPath)
     }
 }

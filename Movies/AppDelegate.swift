@@ -17,12 +17,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool
     {
         // Override point for customization after application launch.
-        SearchMovies(title: "Batman").execute({ (movies) in
-            print("Success!")
-            print("\(movies)")
-        }) { (error) in
-            print("Error: \(error)")
-        }
         
         return true
     }
