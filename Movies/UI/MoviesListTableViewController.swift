@@ -10,5 +10,16 @@ import UIKit
 
 class MoviesListTableViewController: UITableViewController
 {
-    
+    override func viewDidLoad()
+    {
+        super.viewDidLoad()
+        
+        guard let configuration = ServiceConfig.appConfig() else { return }
+        let movieService = MoviesService(configuration)
+        movieService.getMovies({ (movies) in
+            print(movies)
+        }) { (error) in
+            print(error.localizedDescription)
+        }
+    }
 }

@@ -8,10 +8,26 @@
 
 import Foundation
 
-struct Movie
+struct Movie: Codable
 {
     let title:       String
     let overview:    String
     let posterPath:  String
     let releaseDate: String
+    
+    enum CodingKeys: String, CodingKey
+    {
+        case title = "title"
+        case overview = "overview"
+        case posterPath = "poster_path"
+        case releaseDate = "release_date"
+    }
+}
+
+extension Movie: CustomStringConvertible
+{
+    var description: String
+    {
+        return title
+    }
 }
