@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct TableViewModel<T>: TableViewModelProtocol
+struct TableModel<T>: TableModelProtocol
 {
     typealias Data = T
     

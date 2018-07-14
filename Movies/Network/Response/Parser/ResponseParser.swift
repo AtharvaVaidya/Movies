@@ -8,7 +8,7 @@
 
 import Foundation
 
-protocol ResponseParser
+public protocol ResponseParser
 {
     associatedtype T
     

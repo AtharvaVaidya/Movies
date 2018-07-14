@@ -41,12 +41,21 @@ public final class ServiceConfig
         self.name = name ?? (url.host ?? "")
     }
     
+    public init(name: String? = nil, base url: URL)
+    {
+        self.url = url
+        self.name = name ?? (url.host ?? "")
+    }
+    
     /// Attempt to load server configuration from Info.plist
     ///
     /// - Returns: ServiceConfig if Info.plist of the app can be parsed, `nil` otherwise
-    public static func appConfig() -> ServiceConfig?
+    public static func appConfig() -> ServiceConfig
     {
-        return ServiceConfig(base: "https://api.themoviedb.org/3")
+        guard let url = URL.init(string: "https://api.themoviedb.org/3")
+        else { fatalError("could not initialize default service config") }
+        
+        return ServiceConfig(base: url)
     }
 }
 

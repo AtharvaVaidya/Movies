@@ -8,4 +8,4 @@
 
 import Foundation
 
-typealias MovieListModel = TableViewModel<Movie>
+typealias MovieListModel = TableModel<Movie>

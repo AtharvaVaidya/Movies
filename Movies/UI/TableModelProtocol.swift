@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol TableViewModelProtocol
+public protocol TableModelProtocol
 {
     associatedtype Data
     

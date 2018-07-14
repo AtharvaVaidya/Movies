@@ -17,7 +17,7 @@ class MovieTableViewCell: UITableViewCell
     
     init(movie: Movie)
     {
-        super.init(style: .default, reuseIdentifier: "")
+        super.init(style: .default, reuseIdentifier: String(describing: MovieTableViewCell.self))
     }
     
     required init?(coder aDecoder: NSCoder)

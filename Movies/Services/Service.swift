@@ -26,7 +26,7 @@ public class Service: ServiceProtocol
         self.headers = self.configuration.headers // fillup with initial headers
     }
     
-    public func execute(request: RequestProtocol, _ success: @escaping (Data?) -> (), _ failure: @escaping (NetworkError) -> ())
+    public func execute(request: RequestProtocol, _ success: @escaping (Data) -> (), _ failure: @escaping (NetworkError) -> ())
     {
         do
         {
@@ -39,6 +39,7 @@ public class Service: ServiceProtocol
                 switch parsedResponse.type
                 {
                 case .success: // success
+                    guard let data = data else { failure(NetworkError.error(parsedResponse)); return }
                     success(data)
                 case .error: // failure
                     failure(NetworkError.error(parsedResponse))

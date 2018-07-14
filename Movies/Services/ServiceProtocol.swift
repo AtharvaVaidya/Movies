@@ -24,5 +24,5 @@ public protocol ServiceProtocol
     /// - Parameter configuration: configuration to use
     init(_ configuration: ServiceConfig)
     
-    func execute(request: RequestProtocol, _ success: @escaping (Data?) -> (), _ failure: @escaping (NetworkError) -> ())
+    func execute(request: RequestProtocol, _ success: @escaping (Data) -> (), _ failure: @escaping (NetworkError) -> ())
 }

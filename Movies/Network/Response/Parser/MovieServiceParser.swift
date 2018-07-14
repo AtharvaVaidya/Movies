@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct MoviesServiceParser: ResponseParser
+struct MovieServiceParser: ResponseParser
 {
     typealias T = [Movie]
     
