@@ -65,36 +65,7 @@ class MoviesListPresenter: NSObject
     }
 }
 
-extension MoviesListPresenter
-{
-    func downloadPoster(movie: Movie, for cell: MovieTableViewCell)
-    {
-        if let cachedImage = Constants.postersCache.object(forKey: movie.posterPath as NSString)
-        {
-            cell.update(image: cachedImage)
-        }
-            
-        else
-        {
-            GetPoster(movie: movie).execute(
-            { (image) in
-                
-                Constants.postersCache.setObject(image, forKey: movie.posterPath as NSString)
-                
-                if movie == cell.movie
-                {
-                    DispatchQueue.main.async
-                    {
-                        cell.update(image: image)
-                    }
-                }
-            })
-            { (error) in
-                print(error)
-            }
-        }
-    }
-}
+extension MoviesListPresenter: MovieCellPosterDownloader {}
 
 extension MoviesListPresenter: UITableViewDataSource
 {

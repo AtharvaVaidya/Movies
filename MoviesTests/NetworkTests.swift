@@ -21,7 +21,7 @@ class NetworkTests: XCTestCase
         // Put setup code here. This method is called before the invocation of each test method in the class.
         getMoviesOperation = GetMovies()
         searchMoviesOperation = SearchMovies(title: "The Dark Knight")
-        imageDownloadOperation = GetPoster(movie: Movie(title: "Batman v Superman: Dawn of Justice", overview: "Fearing the actions of a god-like Super Hero left unchecked, Gotham City's own formidable, forceful vigilante takes on Metropolis's most revered, modern-day savior, while the world wrestles with what sort of hero it really needs. And with Batman and Superman at war with one another, a new threat quickly arises, putting mankind in greater danger than it's ever known before.", posterPath: "/cGOPbv9wA5gEejkUN892JrveARt.jpg", releaseDate: "2016-03-23"))
+        imageDownloadOperation = GetPoster(movie: MockMovie.createMovie())
     }
     
     override func tearDown() {

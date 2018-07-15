@@ -12,6 +12,8 @@
 		EC5F27A820FA924000A14CAE /* MovieSearchTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5F27A720FA924000A14CAE /* MovieSearchTableViewController.swift */; };
 		EC5F27DE20FB5A7700A14CAE /* NetworkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5F27DD20FB5A7700A14CAE /* NetworkTests.swift */; };
 		EC5F27E420FB5CD700A14CAE /* PresenterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5F27E320FB5CD700A14CAE /* PresenterTests.swift */; };
+		EC5F27E620FB61B100A14CAE /* MockMovie.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5F27E520FB61B100A14CAE /* MockMovie.swift */; };
+		EC5F27E820FB649A00A14CAE /* MovieCellPosterDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5F27E720FB649A00A14CAE /* MovieCellPosterDownloader.swift */; };
 		ECB0028E20F89D6E005593CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB0028D20F89D6E005593CB /* AppDelegate.swift */; };
 		ECB0029520F89D72005593CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ECB0029420F89D72005593CB /* Assets.xcassets */; };
 		ECB0029820F89D72005593CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ECB0029620F89D72005593CB /* LaunchScreen.storyboard */; };
@@ -61,6 +63,8 @@
 		EC5F27A720FA924000A14CAE /* MovieSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchTableViewController.swift; sourceTree = "<group>"; };
 		EC5F27DD20FB5A7700A14CAE /* NetworkTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkTests.swift; sourceTree = "<group>"; };
 		EC5F27E320FB5CD700A14CAE /* PresenterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresenterTests.swift; sourceTree = "<group>"; };
+		EC5F27E520FB61B100A14CAE /* MockMovie.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockMovie.swift; sourceTree = "<group>"; };
+		EC5F27E720FB649A00A14CAE /* MovieCellPosterDownloader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellPosterDownloader.swift; sourceTree = "<group>"; };
 		ECB0028A20F89D6E005593CB /* Movies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Movies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ECB0028D20F89D6E005593CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ECB0029420F89D72005593CB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -223,6 +227,7 @@
 		ECB002A120F89D72005593CB /* MoviesTests */ = {
 			isa = PBXGroup;
 			children = (
+				EC5F27E520FB61B100A14CAE /* MockMovie.swift */,
 				ECB002A220F89D72005593CB /* MoviesTests.swift */,
 				EC5F27DD20FB5A7700A14CAE /* NetworkTests.swift */,
 				EC5F27E320FB5CD700A14CAE /* PresenterTests.swift */,
@@ -263,6 +268,7 @@
 		ECB002E020F91AAD005593CB /* Network */ = {
 			isa = PBXGroup;
 			children = (
+				EC5F27E720FB649A00A14CAE /* MovieCellPosterDownloader.swift */,
 				ECB002F520F9C104005593CB /* NetworkError.swift */,
 				ECB002DE20F91AA8005593CB /* HTTPMethod.swift */,
 				ECE8FF9820FA1129007FA3A0 /* Operations */,
@@ -390,6 +396,7 @@
 				ECB002DF20F91AA8005593CB /* HTTPMethod.swift in Sources */,
 				ECB002D620F9187B005593CB /* MovieOperation.swift in Sources */,
 				ECE8FF9C20FA1C18007FA3A0 /* ImageParser.swift in Sources */,
+				EC5F27E820FB649A00A14CAE /* MovieCellPosterDownloader.swift in Sources */,
 				ECB002EE20F92759005593CB /* Response.swift in Sources */,
 				ECB002CC20F8EDC4005593CB /* MovieTableViewCell.swift in Sources */,
 				EC25FBD320FA0C7C0089D840 /* Constants.swift in Sources */,
@@ -420,6 +427,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC5F27E620FB61B100A14CAE /* MockMovie.swift in Sources */,
 				ECB002A320F89D72005593CB /* MoviesTests.swift in Sources */,
 				EC5F27DE20FB5A7700A14CAE /* NetworkTests.swift in Sources */,
 				EC5F27E420FB5CD700A14CAE /* PresenterTests.swift in Sources */,

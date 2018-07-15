@@ -39,7 +39,7 @@ class MoviesSearchPresenter: NSObject
     func search(title: String, _ onSuccess: (([Movie]) -> ())? = nil, _ onFailure: ((NetworkError) -> ())? = nil)
     {
         queue.addOperation
-        {
+        {            
             SearchMovies(title: title).execute(
             { (movies) in
                 self.updateModelAndUI(with: movies)
@@ -115,36 +115,7 @@ extension MoviesSearchPresenter: UISearchResultsUpdating
     }
 }
 
-extension MoviesSearchPresenter
-{
-    func downloadPoster(movie: Movie, for cell: MovieTableViewCell)
-    {
-        if let cachedImage = Constants.postersCache.object(forKey: movie.posterPath as NSString)
-        {
-            cell.update(image: cachedImage)
-        }
-            
-        else
-        {
-            GetPoster(movie: movie).execute(
-                { (image) in
-                    
-                    Constants.postersCache.setObject(image, forKey: movie.posterPath as NSString)
-                    
-                    if movie == cell.movie
-                    {
-                        DispatchQueue.main.async
-                            {
-                                cell.update(image: image)
-                        }
-                    }
-            })
-            { (error) in
-                print(error)
-            }
-        }
-    }
-}
+extension MoviesSearchPresenter: MovieCellPosterDownloader {}
 
 extension MoviesSearchPresenter: UITableViewDataSource
 {

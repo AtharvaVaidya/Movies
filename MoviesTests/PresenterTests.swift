@@ -12,18 +12,21 @@ import XCTest
 class PresenterTests: XCTestCase
 {
     var moviesListPresenter: MoviesListPresenter!
+    var searchPresenter: MoviesSearchPresenter!
     
     override func setUp()
     {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
         moviesListPresenter = MoviesListPresenter()
+        searchPresenter = MoviesSearchPresenter()
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         super.tearDown()
         moviesListPresenter = nil
+        searchPresenter = nil
     }
     
     func testExample() {
@@ -36,6 +39,27 @@ class PresenterTests: XCTestCase
         moviesListPresenter.loadData({ (movies) in
             XCTAssert(!movies.isEmpty)
         }) { (error) in
+            XCTFail(error.localizedDescription)
+        }
+    }
+    
+    func testSearchPresenterLoadData()
+    {
+        searchPresenter.search(title: "The Dark Knight", { (movies) in
+            XCTAssert(!movies.isEmpty)
+        })
+        { (error) in
+            XCTFail(error.localizedDescription)
+        }
+    }
+    
+    func testSearchPresenterUpdatesController()
+    {
+        searchPresenter.search(title: "The Dark Knight", { (movies) in
+            XCTAssert(!movies.isEmpty)
+            XCTAssert(self.searchPresenter.model.data == movies)
+        })
+        { (error) in
             XCTFail(error.localizedDescription)
         }
     }
