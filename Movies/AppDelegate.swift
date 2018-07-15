@@ -27,8 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.rootViewController = nvc
         self.window?.makeKeyAndVisible()
         
-        UserDefaults.standard.set([], forKey: String(describing: SearchQueryModel.self))
-
         return true
     }
 
