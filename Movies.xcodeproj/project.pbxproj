@@ -60,6 +60,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		EC025CF920FB7AEC00D8EB72 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		EC25FBD220FA0C7C0089D840 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		EC5F27A520FA8A3900A14CAE /* MoviesSearchPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesSearchPresenter.swift; sourceTree = "<group>"; };
 		EC5F27A720FA924000A14CAE /* MovieSearchTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieSearchTableViewController.swift; sourceTree = "<group>"; };
@@ -211,6 +212,7 @@
 		ECB0028C20F89D6E005593CB /* Movies */ = {
 			isa = PBXGroup;
 			children = (
+				EC025CF920FB7AEC00D8EB72 /* README.md */,
 				ECB0028D20F89D6E005593CB /* AppDelegate.swift */,
 				ECB002F720F9C140005593CB /* Extensions.swift */,
 				ECB002E720F920DB005593CB /* GlobalAliases.swift */,
