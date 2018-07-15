@@ -74,3 +74,16 @@ extension Collection
         return indices.contains(index) ? self[index] : nil
     }
 }
+
+extension UIViewController
+{
+    func presentNotification(text: String, subText: String)
+    {
+        let alert = UIAlertController(title: text, message: subText, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default) { (action) in
+            alert.dismiss(animated: true, completion: nil)
+        }
+        alert.addAction(okAction)
+        self.present(alert, animated: true, completion: nil)
+    }
+}

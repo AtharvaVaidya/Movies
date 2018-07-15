@@ -13,15 +13,8 @@ class MoviesListPresenter: NSObject
     var model: MovieListModel = MovieListModel()
     public weak var controller: MoviesListTableViewController?
     let getMoviesOperation: GetMovies = GetMovies()
-    
-    private let imageCache: NSCache<NSString, UIImage> =
-    {
-        let cache = NSCache<NSString, UIImage>()
-        cache.name = "Posters Cache"
-        return cache
-    }()
-    
-    let title: String = "Discover"
+
+    let title: String = "Movies"
     
     private var isLoadingData: Bool = false
     
@@ -32,7 +25,7 @@ class MoviesListPresenter: NSObject
         loadData()
     }
     
-    func loadData()
+    func loadData(_ onSuccess: (([Movie]) -> ())? = nil, _ onFailure: ((NetworkError) -> ())? = nil)
     {
         if isLoadingData { return }
 
@@ -46,10 +39,12 @@ class MoviesListPresenter: NSObject
         
             self.updateModelAndUI(with: movies)
             
+            onSuccess?(movies)
+            
         })
         { (error) in
             self.isLoadingData = false
-            print(error.localizedDescription)
+            onFailure?(error)
         }
     }
     
@@ -70,6 +65,37 @@ class MoviesListPresenter: NSObject
     }
 }
 
+extension MoviesListPresenter
+{
+    func downloadPoster(movie: Movie, for cell: MovieTableViewCell)
+    {
+        if let cachedImage = Constants.postersCache.object(forKey: movie.posterPath as NSString)
+        {
+            cell.update(image: cachedImage)
+        }
+            
+        else
+        {
+            GetPoster(movie: movie).execute(
+            { (image) in
+                
+                Constants.postersCache.setObject(image, forKey: movie.posterPath as NSString)
+                
+                if movie == cell.movie
+                {
+                    DispatchQueue.main.async
+                    {
+                        cell.update(image: image)
+                    }
+                }
+            })
+            { (error) in
+                print(error)
+            }
+        }
+    }
+}
+
 extension MoviesListPresenter: UITableViewDataSource
 {
     func numberOfSections(in tableView: UITableView) -> Int
@@ -86,38 +112,9 @@ extension MoviesListPresenter: UITableViewDataSource
     {
         guard let movie = model.data[safe: indexPath.row] else { return UITableViewCell() }
         
-        let cell: MovieTableViewCell
+        let cell: MovieTableViewCell = Factory.TableViewCells.makeMovieTableViewCell(movie: movie, in: tableView)
         
-        if let tempCell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.identifier) as? MovieTableViewCell
-        {
-            cell = tempCell
-            cell.movie = movie
-        }
-        
-        else
-        {
-            cell = MovieTableViewCell(movie: movie)
-        }
-        
-        if let cachedImage = imageCache.object(forKey: movie.posterPath as NSString)
-        {
-            cell.update(image: cachedImage)
-        }
-            
-        else
-        {
-            GetPoster(movie: movie).execute(
-            { (image) in
-                DispatchQueue.main.async
-                {
-                    self.imageCache.setObject(image, forKey: movie.posterPath as NSString)
-                    cell.update(image: image)
-                }
-            })
-            { (error) in
-                print(error)
-            }
-        }
+        self.downloadPoster(movie: movie, for: cell)
         
         return cell
     }
@@ -140,7 +137,7 @@ extension MoviesListPresenter
         
         let dragLength = maximumOffset - currentOffset
         
-        if dragLength <= 50
+        if dragLength <= 20
         {
             self.loadData()
         }

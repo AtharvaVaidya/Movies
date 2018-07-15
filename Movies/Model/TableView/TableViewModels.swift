@@ -23,6 +23,9 @@ struct SearchQueryModel
     
     private var key: String = String(describing: SearchQueryModel.self)
     
+    //Change this to increase the number of
+    private var capacity: Int = 10
+    
     init()
     {
         self.data = UserDefaults.standard.array(forKey: key) as? [String] ?? []
@@ -34,9 +37,9 @@ struct SearchQueryModel
         
         self.data.insert(query, at: 0)
 
-        if self.data.count >= 20
+        if self.data.count > capacity
         {
-            self.data = Array(self.data.dropLast(self.data.count - 20))
+            self.data = Array(self.data.dropLast(self.data.count - capacity))
         }
     }
 }

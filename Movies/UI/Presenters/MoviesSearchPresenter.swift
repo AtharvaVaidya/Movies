@@ -16,13 +16,6 @@ class MoviesSearchPresenter: NSObject
 
     public weak var controller: MovieSearchTableViewController?
     public weak var searchBar: UISearchBar?
-    
-    private let imageCache: NSCache<NSString, UIImage> =
-    {
-        let cache = NSCache<NSString, UIImage>()
-        cache.name = "Posters Cache"
-        return cache
-    }()
         
     let queue: OperationQueue = OperationQueue()
     
@@ -43,17 +36,18 @@ class MoviesSearchPresenter: NSObject
         self.controller?.tableView.register(UITableViewCell.self, forCellReuseIdentifier: "SearchQueryCell")
     }
     
-    func search(title: String)
+    func search(title: String, _ onSuccess: (([Movie]) -> ())? = nil, _ onFailure: ((NetworkError) -> ())? = nil)
     {
         queue.addOperation
         {
-            SearchMovies(title: title).execute({ (movies) in
-                print("Search results for \(title): \(movies)")
+            SearchMovies(title: title).execute(
+            { (movies) in
                 self.updateModelAndUI(with: movies)
+                onSuccess?(movies)
             })
             { (error) in
-                print("Error retrieving search results for \(title)")
                 print(error.localizedDescription)
+                onFailure?(error)
             }
         }
     }
@@ -81,7 +75,27 @@ extension MoviesSearchPresenter: UISearchBarDelegate
     {
         guard let searchText = searchBar.text, !searchText.isEmpty else { return }
     
-        searchQueriesModel.add(query: searchText)
+        self.model.data = []
+        self.controller?.tableView.reloadData()
+        
+        queue.cancelAllOperations()
+        
+        search(title: searchText,
+        { (movies) in
+            if movies.isEmpty
+            {
+                self.controller?.presentNotification(text: "Error", subText: "No movies found with title \(searchText)")
+            }
+            else { self.searchQueriesModel.add(query: searchText) }
+        })
+        { (error) in
+            self.controller?.presentNotification(text: "Error", subText: "\(error.localizedDescription)")
+        }
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String)
+    {
+        self.model.data = []
     }
 }
 
@@ -98,13 +112,37 @@ extension MoviesSearchPresenter: UISearchResultsUpdating
         }
         
         searching = true
-        
-        self.model.data = []
-        self.controller?.tableView.reloadData()
-        
-        queue.cancelAllOperations()
-        
-        search(title: searchText)
+    }
+}
+
+extension MoviesSearchPresenter
+{
+    func downloadPoster(movie: Movie, for cell: MovieTableViewCell)
+    {
+        if let cachedImage = Constants.postersCache.object(forKey: movie.posterPath as NSString)
+        {
+            cell.update(image: cachedImage)
+        }
+            
+        else
+        {
+            GetPoster(movie: movie).execute(
+                { (image) in
+                    
+                    Constants.postersCache.setObject(image, forKey: movie.posterPath as NSString)
+                    
+                    if movie == cell.movie
+                    {
+                        DispatchQueue.main.async
+                            {
+                                cell.update(image: image)
+                        }
+                    }
+            })
+            { (error) in
+                print(error)
+            }
+        }
     }
 }
 
@@ -117,7 +155,6 @@ extension MoviesSearchPresenter: UITableViewDataSource
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        print("Count: \(searching ? model.data.count : searchQueriesModel.data.count)")
         return searching ? model.data.count : searchQueriesModel.data.count
     }
     
@@ -127,55 +164,14 @@ extension MoviesSearchPresenter: UITableViewDataSource
         {
             guard let query = searchQueriesModel.data[safe: indexPath.row] else { return UITableViewCell() }
             
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "SearchQueryCell")
-            {
-                cell.textLabel?.text = query
-                return cell
-            }
-                
-            else
-            {
-                let cell = UITableViewCell(style: .default, reuseIdentifier: "SearchQueryCell")
-                cell.textLabel?.text = query
-                return cell
-            }
-            
+            return Factory.TableViewCells.makeSearchQueryCell(query: query, in: tableView)
         }
         
         guard let movie = model.data[safe: indexPath.row] else { return UITableViewCell() }
         
-        let cell: MovieTableViewCell
+        let cell: MovieTableViewCell = Factory.TableViewCells.makeMovieTableViewCell(movie: movie, in: tableView)
         
-        if let tempCell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.identifier) as? MovieTableViewCell
-        {
-            cell = tempCell
-            cell.movie = movie
-        }
-            
-        else
-        {
-            cell = MovieTableViewCell(movie: movie)
-        }
-        
-        if let cachedImage = imageCache.object(forKey: movie.posterPath as NSString)
-        {
-            cell.update(image: cachedImage)
-        }
-            
-        else
-        {
-            GetPoster(movie: movie).execute(
-                { (image) in
-                    DispatchQueue.main.async
-                        {
-                            self.imageCache.setObject(image, forKey: movie.posterPath as NSString)
-                            cell.update(image: image)
-                    }
-            })
-            { (error) in
-                print(error)
-            }
-        }
+        self.downloadPoster(movie: movie, for: cell)
         
         return cell
     }
@@ -192,7 +188,11 @@ extension MoviesSearchPresenter: UITableViewDelegate
     {
         if searching { return }
         
-        self.searchBar?.text = searchQueriesModel.data[indexPath.row]
+        let query = searchQueriesModel.data[indexPath.row]
+        
+        self.searchBar?.text = query
         self.searchBar?.resignFirstResponder()
+        
+        search(title: query)
     }
 }

@@ -6,11 +6,18 @@
 //  Copyright © 2018 Atharva vaidya. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
-struct Constants
+public struct Constants
 {
     static let APIKey: String = "2696829a81b1b5827d515ff121700838"
+    
+    static let postersCache: NSCache<NSString, UIImage> =
+    {
+        let cache = NSCache<NSString, UIImage>()
+        cache.name = "Posters Cache"
+        return cache
+    }()
     
     private init() {}
 }

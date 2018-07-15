@@ -111,7 +111,7 @@ public extension RequestProtocol
     {
         // Compose default full url
         let requestURL = try self.url(in: service)
-        print("Request URL: \(requestURL)")
+        
         // Setup cache policy, timeout and headers of the request
         let cachePolicy = self.cachePolicy ?? service.configuration.cachePolicy
         let timeout = self.timeout ?? service.configuration.timeout

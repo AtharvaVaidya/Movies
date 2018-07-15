@@ -6,7 +6,7 @@
 //  Copyright © 2018 Atharva vaidya. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct Factory
 {
@@ -27,6 +27,24 @@ extension Factory
             return vc
         }
         
+        static func makeSearchController() -> UISearchController
+        {
+            let searchVC = makeMovieSearchViewController()
+            let searchPresenter = searchVC.presenter
+            
+            let searchController = UISearchController(searchResultsController: searchVC)
+            
+            searchController.searchResultsUpdater = searchPresenter
+            searchController.hidesNavigationBarDuringPresentation = true
+            searchController.dimsBackgroundDuringPresentation = true
+            searchController.searchBar.sizeToFit()
+            
+            searchController.searchBar.delegate = searchPresenter
+            searchPresenter.searchBar = searchController.searchBar
+            
+            return searchController
+        }
+        
         static func makeMovieSearchViewController() -> MovieSearchTableViewController
         {
             let presenter = MoviesSearchPresenter()
@@ -35,6 +53,43 @@ extension Factory
             presenter.controller = vc
             
             return vc
+        }
+    }
+    
+    struct TableViewCells
+    {
+        static func makeMovieTableViewCell(movie: Movie, in tableView: UITableView) -> MovieTableViewCell
+        {
+            let cell: MovieTableViewCell
+            
+            if let tempCell = tableView.dequeueReusableCell(withIdentifier: MovieTableViewCell.identifier) as? MovieTableViewCell
+            {
+                cell = tempCell
+                cell.movie = movie
+            }
+                
+            else
+            {
+                cell = MovieTableViewCell(movie: movie)
+            }
+            
+            return cell
+        }
+        
+        static func makeSearchQueryCell(query: String, in tableView: UITableView) -> UITableViewCell
+        {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: "SearchQueryCell")
+            {
+                cell.textLabel?.text = query
+                return cell
+            }
+                
+            else
+            {
+                let cell = UITableViewCell(style: .default, reuseIdentifier: "SearchQueryCell")
+                cell.textLabel?.text = query
+                return cell
+            }
         }
     }
 }
