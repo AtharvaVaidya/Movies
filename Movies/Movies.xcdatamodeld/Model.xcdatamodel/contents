@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17G62a" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="SearchQueryManagedObject" representedClassName="SearchQueryManagedObject" syncable="YES" codeGenerationType="class">
+        <attribute name="searchQuries" optional="YES" attributeType="Transformable" customClassName="[String]" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="SearchQueryManagedObject" positionX="-63" positionY="-18" width="128" height="60"/>
+    </elements>
+</model>

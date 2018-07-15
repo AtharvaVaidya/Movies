@@ -15,7 +15,7 @@ public class MovieParser: Parser<[Movie]>
         do
         {
             guard let dictObject = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? NSDictionary,
-                  let results = dictObject["results"] as? [[String : Any?]]
+                  let results = dictObject["results"] as? [NSDictionary]
             else
             {
                 return []
@@ -35,7 +35,8 @@ public class MovieParser: Parser<[Movie]>
                     
                 catch
                 {
-                    throw NetworkError.failedToParseJSONDictionary(movieDict)
+                    continue
+//                    throw NetworkError.failedToParseJSONDictionary(movieDict as! [String : Any?])
                 }
             }
             

@@ -11,7 +11,6 @@ import Foundation
 public class Operation<T>
 {
     var request: RequestProtocol
-    
     let service: Service
     
     init(request: RequestProtocol)

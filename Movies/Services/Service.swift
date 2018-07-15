@@ -37,7 +37,7 @@ public class Service: ServiceProtocol
         do
         {
             let urlRequest = try request.urlRequest(in: self)
-            
+                        
             let context = request.context ?? DispatchQueue.global(qos: .default)
             
             context.async

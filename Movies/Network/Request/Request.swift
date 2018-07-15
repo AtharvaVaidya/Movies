@@ -10,6 +10,8 @@ import Foundation
 
 public class Request: RequestProtocol
 {
+    public var page: Int?
+    
     public var context: Context?
     
     /// Endpoint for request
@@ -44,12 +46,13 @@ public class Request: RequestProtocol
     ///   - params: paramters to replace in endpoint
     ///   - fields: fields to append inside the url
     ///   - body: body to set
-    public init(method: HTTPMethod = .get, endpoint: String = "", params: ParamsDict? = nil, fields: ParamsDict? = nil, body: RequestBody? = nil)
+    public init(method: HTTPMethod = .get, endpoint: String = "", params: ParamsDict? = nil, fields: ParamsDict? = nil, body: RequestBody? = nil, page: Int? = nil)
     {
         self.method = method
         self.endpoint = endpoint
         self.urlParams = params
         self.fields = fields
         self.body = body
+        self.page = page
     }
 }

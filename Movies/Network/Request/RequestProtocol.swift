@@ -21,6 +21,8 @@ public protocol RequestProtocol
     /// This is the endpoint of the request (ie. `/v2/auth/login`)
     var endpoint: String { get set }
     
+    var page: Int? { get set }
+    
     /// The HTTP method used to perform the request.
     var method: HTTPMethod? { get set }
     
@@ -91,7 +93,8 @@ public extension RequestProtocol
     func url(in service: ServiceProtocol) throws -> URL
     {
         // Compose request URL by taking configuration's full url (service url + request endpoint)
-        let baseURL = service.configuration.url.absoluteString.appending(self.endpoint)
+        let baseURL = service.configuration.url.absoluteString.appending(self.endpoint).appending(page == nil ? "" : "&page=\(self.page!)")
+
         // Append request's endpoint and eventually:
         //  - replace `urlParams` if specified
         //  - append fields url as encoded url
@@ -108,6 +111,7 @@ public extension RequestProtocol
     {
         // Compose default full url
         let requestURL = try self.url(in: service)
+        print("Request URL: \(requestURL)")
         // Setup cache policy, timeout and headers of the request
         let cachePolicy = self.cachePolicy ?? service.configuration.cachePolicy
         let timeout = self.timeout ?? service.configuration.timeout

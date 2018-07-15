@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Movie: Codable
+public struct Movie: Codable, Equatable
 {
     let title:       String
     let overview:    String
@@ -31,3 +31,23 @@ extension Movie: CustomStringConvertible
         return title
     }
 }
+
+extension Movie
+{
+    var titleAndReleaseYear: String
+    {
+        return "\(title) (\(releaseYear))"
+    }
+    
+    var releaseYear: String
+    {
+        let dateFormatter           = DateFormatter()
+        dateFormatter.dateFormat    = "yyyy-mm-dd"
+        guard let date              = dateFormatter.date(from: self.releaseDate) else { return "" }
+        
+        dateFormatter.dateFormat    = "yyyy"
+        
+        return dateFormatter.string(from: date)
+    }
+}
+
