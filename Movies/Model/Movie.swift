@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// A struct that encapsulates all the data about a movie.
 public struct Movie: Codable, Equatable
 {
     let title:       String
@@ -34,16 +35,17 @@ extension Movie: CustomStringConvertible
 
 extension Movie
 {
+    /// Convenience function that returns a string with the title and release year. Example: The Dark Knight (2008)
     var titleAndReleaseYear: String
     {
-        return "\(title) (\(releaseYear))"
+        return "\(title) \(releaseYear == nil ? "" : "(\(releaseYear ?? ""))")"
     }
     
-    var releaseYear: String
+    var releaseYear: String?
     {
         let dateFormatter           = DateFormatter()
         dateFormatter.dateFormat    = "yyyy-mm-dd"
-        guard let date              = dateFormatter.date(from: self.releaseDate) else { return "" }
+        guard let date              = dateFormatter.date(from: self.releaseDate) else { return nil }
         
         dateFormatter.dateFormat    = "yyyy"
         

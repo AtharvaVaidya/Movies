@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Protocol for the model of a UITableView.
 public protocol TableModelProtocol
 {
     associatedtype Data

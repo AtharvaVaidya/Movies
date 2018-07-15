@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Image parser
 public class ImageParser: Parser<UIImage>
 {
     override public func parse(data: Data) throws -> UIImage

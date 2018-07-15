@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Generic operation to retrieve a movie
 public class MovieOperation: Operation<[Movie]>
 {
     let endPoint: String
@@ -25,6 +26,7 @@ public class MovieOperation: Operation<[Movie]>
     }
 }
 
+/// Operation to get a list of movies sorted by their current popularity
 class GetMovies: MovieOperation
 {
     var currentPage: Int = 1
@@ -41,6 +43,7 @@ class GetMovies: MovieOperation
     }
 }
 
+/// Operation to search for a movie with a given title
 class SearchMovies: MovieOperation
 {
     init(title: String)

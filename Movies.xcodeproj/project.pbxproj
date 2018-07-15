@@ -42,7 +42,7 @@
 		ECD556CF20FB65ED0029ED26 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD556CE20FB65ED0029ED26 /* ViewControllerFactory.swift */; };
 		ECD556D120FB66080029ED26 /* TableViewCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD556D020FB66080029ED26 /* TableViewCellFactory.swift */; };
 		ECE8FF9520FA0D02007FA3A0 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE8FF9420FA0D02007FA3A0 /* Operation.swift */; };
-		ECE8FF9A20FA1192007FA3A0 /* ImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE8FF9920FA1192007FA3A0 /* ImageOperation.swift */; };
+		ECE8FF9A20FA1192007FA3A0 /* PosterOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE8FF9920FA1192007FA3A0 /* PosterOperation.swift */; };
 		ECE8FF9C20FA1C18007FA3A0 /* ImageParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE8FF9B20FA1C18007FA3A0 /* ImageParser.swift */; };
 		ECE8FF9E20FA29F2007FA3A0 /* MoviesListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE8FF9D20FA29F2007FA3A0 /* MoviesListPresenter.swift */; };
 		ECE8FFA020FA5357007FA3A0 /* Factory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE8FF9F20FA5357007FA3A0 /* Factory.swift */; };
@@ -99,7 +99,7 @@
 		ECD556CE20FB65ED0029ED26 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
 		ECD556D020FB66080029ED26 /* TableViewCellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellFactory.swift; sourceTree = "<group>"; };
 		ECE8FF9420FA0D02007FA3A0 /* Operation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
-		ECE8FF9920FA1192007FA3A0 /* ImageOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOperation.swift; sourceTree = "<group>"; };
+		ECE8FF9920FA1192007FA3A0 /* PosterOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PosterOperation.swift; sourceTree = "<group>"; };
 		ECE8FF9B20FA1C18007FA3A0 /* ImageParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageParser.swift; sourceTree = "<group>"; };
 		ECE8FF9D20FA29F2007FA3A0 /* MoviesListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoviesListPresenter.swift; sourceTree = "<group>"; };
 		ECE8FF9F20FA5357007FA3A0 /* Factory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Factory.swift; sourceTree = "<group>"; };
@@ -297,7 +297,7 @@
 			children = (
 				ECE8FF9420FA0D02007FA3A0 /* Operation.swift */,
 				ECB002D520F9187B005593CB /* MovieOperation.swift */,
-				ECE8FF9920FA1192007FA3A0 /* ImageOperation.swift */,
+				ECE8FF9920FA1192007FA3A0 /* PosterOperation.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -405,7 +405,7 @@
 			files = (
 				ECB0028E20F89D6E005593CB /* AppDelegate.swift in Sources */,
 				ECB002B120F8BD44005593CB /* MoviesListTableViewController.swift in Sources */,
-				ECE8FF9A20FA1192007FA3A0 /* ImageOperation.swift in Sources */,
+				ECE8FF9A20FA1192007FA3A0 /* PosterOperation.swift in Sources */,
 				ECD556D120FB66080029ED26 /* TableViewCellFactory.swift in Sources */,
 				ECE8FF9E20FA29F2007FA3A0 /* MoviesListPresenter.swift in Sources */,
 				ECB002DF20F91AA8005593CB /* HTTPMethod.swift in Sources */,

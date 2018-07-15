@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// A very basic generic struct to adhere to the TableModelProtocol
 struct TableModel<T>: TableModelProtocol
 {
     typealias Data = T

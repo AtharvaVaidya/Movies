@@ -8,8 +8,14 @@
 
 import Foundation
 
+/// Parser for a movie
 public class MovieParser: Parser<[Movie]>
 {    
+    /// Parses a movie from the Data obtained from a API response regarding a Movie.
+    ///
+    /// - Parameter data: The data from the response
+    /// - Returns: An array of movies parsed from the response
+    /// - Throws: Failed to parse JSON if it cannot parse the response.
     override public func parse(data: Data) throws -> [Movie]
     {
         do
@@ -36,7 +42,6 @@ public class MovieParser: Parser<[Movie]>
                 catch
                 {
                     continue
-//                    throw NetworkError.failedToParseJSONDictionary(movieDict as! [String : Any?])
                 }
             }
             

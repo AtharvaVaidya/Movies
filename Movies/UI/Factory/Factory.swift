@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Struct to act as the container for all factories
 struct Factory
 {
     private init() {}

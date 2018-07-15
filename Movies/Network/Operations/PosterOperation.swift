@@ -8,7 +8,8 @@
 
 import UIKit
 
-class ImageOperation: Operation<UIImage>
+/// An operation to download a poster from the API
+class GetPoster: Operation<UIImage>
 {
     let path: String
     
@@ -28,16 +29,14 @@ class ImageOperation: Operation<UIImage>
         super.init(request: request, serviceConfig: serviceConfig)
     }
     
+    convenience init(movie: Movie)
+    {
+        self.init(path: movie.posterPath)
+    }
+    
     override func parser() -> Parser<UIImage>
     {
         return ImageParser()
     }
 }
 
-class GetPoster: ImageOperation
-{
-    init(movie: Movie)
-    {
-        super.init(path: movie.posterPath)
-    }
-}

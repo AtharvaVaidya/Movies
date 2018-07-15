@@ -8,8 +8,14 @@
 
 import Foundation
 
+/// Protocol that be should adhered to if the object wants to download a movie poster for a given `MovieTableViewCell`
 protocol MovieCellPosterDownloader
 {
+    /// Downloads the poster for a given movie.
+    /// Tries to retrieve the poster from a temporary image cache if it exists otherwise downloads it.
+    /// - Parameters:
+    ///   - movie: The movie for which the poster has to be downloaded
+    ///   - cell: The cell that the poster belongs to.
     func downloadPoster(movie: Movie, for cell: MovieTableViewCell)
 }
 

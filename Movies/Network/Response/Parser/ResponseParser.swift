@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Generic Parser for a given type.
 public class Parser<T>
 {
     public func parse(data: Data) throws -> T

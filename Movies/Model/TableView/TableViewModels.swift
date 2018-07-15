@@ -11,7 +11,8 @@ import CoreData
 
 typealias MovieListModel = TableModel<Movie>
 
-struct SearchQueryModel
+/// The model for a SearchQueryPresenter
+struct SearchQueryModel: TableModelProtocol
 {
     var data: [String] = []
     {

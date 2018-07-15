@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Generic Operation object that outlines that basics of an operation
 public class Operation<T>
 {
     var request: RequestProtocol
@@ -25,6 +26,11 @@ public class Operation<T>
         self.service = Service(serviceConfig)
     }
     
+    /// Executes the operation
+    ///
+    /// - Parameters:
+    ///   - success: Block with the type associated with the operation.
+    ///   - failure: Block in case the operation fails. Provides a NetworkError object.
     func execute(_ success: @escaping (T) -> (), _ failure: @escaping (NetworkError) -> ())
     {
         self.service.execute(request: request,
@@ -43,6 +49,9 @@ public class Operation<T>
         }
     }
     
+    /// The Parser for the current operation
+    ///
+    /// - Returns: A parser for the type of the current operation.
     public func parser() -> Parser<T>
     {
         return Parser<T>()
