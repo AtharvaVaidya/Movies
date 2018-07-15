@@ -27,15 +27,15 @@ extension MovieCellPosterDownloader
             GetPoster(movie: movie).execute(
             { (image) in
                     
-                    Constants.postersCache.setObject(image, forKey: movie.posterPath as NSString)
-                    
-                    if movie == cell.movie
+                Constants.postersCache.setObject(image, forKey: movie.posterPath as NSString)
+                
+                if movie == cell.movie
+                {
+                    DispatchQueue.main.async
                     {
-                        DispatchQueue.main.async
-                        {
-                            cell.update(image: image)
-                        }
+                        cell.update(image: image)
                     }
+                }
             })
             { (error) in
                 print(error)

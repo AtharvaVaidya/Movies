@@ -39,6 +39,8 @@
 		ECB6CFCD20F9CADB00D852FF /* Request.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6CFCC20F9CADB00D852FF /* Request.swift */; };
 		ECB6CFCF20F9E90700D852FF /* ResponseParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6CFCE20F9E90700D852FF /* ResponseParser.swift */; };
 		ECB6CFD120F9EBEF00D852FF /* MovieParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB6CFD020F9EBEE00D852FF /* MovieParser.swift */; };
+		ECD556CF20FB65ED0029ED26 /* ViewControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD556CE20FB65ED0029ED26 /* ViewControllerFactory.swift */; };
+		ECD556D120FB66080029ED26 /* TableViewCellFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECD556D020FB66080029ED26 /* TableViewCellFactory.swift */; };
 		ECE8FF9520FA0D02007FA3A0 /* Operation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE8FF9420FA0D02007FA3A0 /* Operation.swift */; };
 		ECE8FF9A20FA1192007FA3A0 /* ImageOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE8FF9920FA1192007FA3A0 /* ImageOperation.swift */; };
 		ECE8FF9C20FA1C18007FA3A0 /* ImageParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECE8FF9B20FA1C18007FA3A0 /* ImageParser.swift */; };
@@ -94,6 +96,8 @@
 		ECB6CFCC20F9CADB00D852FF /* Request.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Request.swift; sourceTree = "<group>"; };
 		ECB6CFCE20F9E90700D852FF /* ResponseParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResponseParser.swift; sourceTree = "<group>"; };
 		ECB6CFD020F9EBEE00D852FF /* MovieParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieParser.swift; sourceTree = "<group>"; };
+		ECD556CE20FB65ED0029ED26 /* ViewControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerFactory.swift; sourceTree = "<group>"; };
+		ECD556D020FB66080029ED26 /* TableViewCellFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCellFactory.swift; sourceTree = "<group>"; };
 		ECE8FF9420FA0D02007FA3A0 /* Operation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Operation.swift; sourceTree = "<group>"; };
 		ECE8FF9920FA1192007FA3A0 /* ImageOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageOperation.swift; sourceTree = "<group>"; };
 		ECE8FF9B20FA1C18007FA3A0 /* ImageParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageParser.swift; sourceTree = "<group>"; };
@@ -211,7 +215,6 @@
 				ECB002F720F9C140005593CB /* Extensions.swift */,
 				ECB002E720F920DB005593CB /* GlobalAliases.swift */,
 				EC25FBD220FA0C7C0089D840 /* Constants.swift */,
-				ECE8FF9F20FA5357007FA3A0 /* Factory.swift */,
 				ECB002E020F91AAD005593CB /* Network */,
 				ECB002D720F91882005593CB /* Services */,
 				ECB002AF20F89E54005593CB /* Model */,
@@ -248,6 +251,7 @@
 		ECB002B220F8BD4A005593CB /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				ECD556D220FB662E0029ED26 /* Factory */,
 				EC5F27E120FB5C9F00A14CAE /* View Controllers */,
 				EC5F27E020FB5C9700A14CAE /* Presenters */,
 				EC5F27E220FB5CA700A14CAE /* Table View Cell */,
@@ -276,6 +280,16 @@
 				EC3CD11220F9F51100C82659 /* Request */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		ECD556D220FB662E0029ED26 /* Factory */ = {
+			isa = PBXGroup;
+			children = (
+				ECE8FF9F20FA5357007FA3A0 /* Factory.swift */,
+				ECD556CE20FB65ED0029ED26 /* ViewControllerFactory.swift */,
+				ECD556D020FB66080029ED26 /* TableViewCellFactory.swift */,
+			);
+			path = Factory;
 			sourceTree = "<group>";
 		};
 		ECE8FF9820FA1129007FA3A0 /* Operations */ = {
@@ -392,6 +406,7 @@
 				ECB0028E20F89D6E005593CB /* AppDelegate.swift in Sources */,
 				ECB002B120F8BD44005593CB /* MoviesListTableViewController.swift in Sources */,
 				ECE8FF9A20FA1192007FA3A0 /* ImageOperation.swift in Sources */,
+				ECD556D120FB66080029ED26 /* TableViewCellFactory.swift in Sources */,
 				ECE8FF9E20FA29F2007FA3A0 /* MoviesListPresenter.swift in Sources */,
 				ECB002DF20F91AA8005593CB /* HTTPMethod.swift in Sources */,
 				ECB002D620F9187B005593CB /* MovieOperation.swift in Sources */,
@@ -402,6 +417,7 @@
 				EC25FBD320FA0C7C0089D840 /* Constants.swift in Sources */,
 				ECB002E820F920DB005593CB /* GlobalAliases.swift in Sources */,
 				ECB002C820F8E9E9005593CB /* TableModel.swift in Sources */,
+				ECD556CF20FB65ED0029ED26 /* ViewControllerFactory.swift in Sources */,
 				ECB6CFCD20F9CADB00D852FF /* Request.swift in Sources */,
 				ECB6CFD120F9EBEF00D852FF /* MovieParser.swift in Sources */,
 				ECE8FF9520FA0D02007FA3A0 /* Operation.swift in Sources */,
