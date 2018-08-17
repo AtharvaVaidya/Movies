@@ -8,15 +8,39 @@
 
 import UIKit
 
-class MoviesListPresenter: NSObject
+class MoviesListPresenter: NSObject, MovieCellPosterDownloader
 {
     var model: MovieListModel = MovieListModel()
     public weak var controller: MoviesListTableViewController?
-    let getMoviesOperation: GetMovies = GetMovies()
+    
+    lazy var getMoviesQueue: OperationQueue =
+    {
+        var queue = OperationQueue()
+        queue.name = "Search Movies Download queue"
+        queue.maxConcurrentOperationCount = 1
+        return queue
+    }()
+    
+    var pendingOperations: PendingOperations
+    {
+        return pendingImageOperations
+    }
+    let pendingImageOperations: PendingOperations = PendingOperations()
 
     let title: String = "Movies"
     
     private var isLoadingData: Bool = false
+    {
+        didSet
+        {
+            DispatchQueue.main.async
+            {
+                _ = self.isLoadingData ? self.controller?.showLoadingIndicator() : self.controller?.hideLoadingIndicator()
+            }
+        }
+    }
+    
+    private var currentPage: Int = 1
     
     override init()
     {
@@ -31,21 +55,29 @@ class MoviesListPresenter: NSObject
 
         isLoadingData = true
         
-        getMoviesOperation.execute(
+        let getMoviesOperation = GetMovies(onSuccess:
         { (movies) in
             
             self.isLoadingData = false
-            self.getMoviesOperation.currentPage += 1
-        
+            self.currentPage += 1
             self.updateModelAndUI(with: movies)
             
             onSuccess?(movies)
-            
         })
         { (error) in
             self.isLoadingData = false
+            
             onFailure?(error)
         }
+        
+        getMoviesOperation.currentPage = self.currentPage
+        
+        for (_, operation) in self.pendingImageOperations.downloadsInProgress
+        {
+            getMoviesOperation.addDependency(operation)
+        }
+        
+        getMoviesQueue.addOperation(getMoviesOperation)
     }
     
     func updateModelAndUI(with movies: [Movie])
@@ -65,8 +97,6 @@ class MoviesListPresenter: NSObject
     }
 }
 
-extension MoviesListPresenter: MovieCellPosterDownloader {}
-
 extension MoviesListPresenter: UITableViewDataSource
 {
     func numberOfSections(in tableView: UITableView) -> Int
@@ -85,7 +115,7 @@ extension MoviesListPresenter: UITableViewDataSource
         
         let cell: MovieTableViewCell = Factory.TableViewCells.makeMovieTableViewCell(movie: movie, in: tableView)
         
-        self.downloadPoster(movie: movie, for: cell)
+        self.downloadPoster(movie: movie, for: cell, at: indexPath)
         
         return cell
     }
@@ -105,9 +135,9 @@ extension MoviesListPresenter
     {
         let currentOffset = scrollView.contentOffset.y
         let maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height
-        
+
         let dragLength = maximumOffset - currentOffset
-        
+
         if dragLength <= 20
         {
             self.loadData()

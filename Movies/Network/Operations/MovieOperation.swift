@@ -6,18 +6,18 @@
 //  Copyright © 2018 Atharva vaidya. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 /// Generic operation to retrieve a movie
-public class MovieOperation: Operation<[Movie]>
+public class MovieOperation: NetworkOperation<[Movie]>
 {
     let endPoint: String
     
-    init(endPoint: String, page: Int = 1)
+    init(endPoint: String, page: Int = 1, onSuccess: (([Movie]) -> ())?, onFailure: ((NetworkError) -> ())?)
     {
         self.endPoint   = endPoint
         let request     = Request(method: .get, endpoint: self.endPoint, page: page)
-        super.init(request: request)
+        super.init(request: request, onSuccess: onSuccess, onFailure: onFailure)
     }
     
     override public func parser() -> Parser<[Movie]>
@@ -37,22 +37,22 @@ class GetMovies: MovieOperation
         }
     }
     
-    init()
+    init(onSuccess: (([Movie]) -> ())? = nil, onFailure: ((NetworkError) -> ())? = nil)
     {
-        super.init(endPoint: "/discover/movie?api_key=\(Constants.APIKey)&sort_by=popularity.desc", page: currentPage)
+        super.init(endPoint: "/discover/movie?api_key=\(Constants.APIKey)&sort_by=popularity.desc", page: currentPage, onSuccess: onSuccess, onFailure: onFailure)
     }
 }
 
 /// Operation to search for a movie with a given title
 class SearchMovies: MovieOperation
 {
-    init(title: String)
+    init(title: String, onSuccess: (([Movie]) -> ())?, onFailure: ((NetworkError) -> ())?)
     {
-        super.init(endPoint: "/search/movie?api_key=\(Constants.APIKey)&query=\(title.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? title)")
+        super.init(endPoint: "/search/movie?api_key=\(Constants.APIKey)&query=\(title.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed) ?? title)", onSuccess: onSuccess, onFailure: onFailure)
     }
     
-    convenience init()
+    convenience init(onSuccess: (([Movie]) -> ())?, onFailure: ((NetworkError) -> ())?)
     {
-        self.init(title: "")
+        self.init(title: "", onSuccess: onSuccess, onFailure: onFailure)
     }
 }

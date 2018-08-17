@@ -9,11 +9,11 @@
 import UIKit
 
 /// An operation to download a poster from the API
-class GetPoster: Operation<UIImage>
+class GetPoster: NetworkOperation<UIImage>
 {
     let path: String
     
-    init(path: String)
+    init(path: String, onSuccess: ((UIImage) -> ())?, onFailure: ((NetworkError) -> ())?)
     {
         self.path = path
         
@@ -26,12 +26,12 @@ class GetPoster: Operation<UIImage>
         let serviceConfig = ServiceConfig.init(base: url)
         let request =  Request(method: .get, endpoint: path)
         
-        super.init(request: request, serviceConfig: serviceConfig)
+        super.init(request: request, serviceConfig: serviceConfig, onSuccess: onSuccess, onFailure: onFailure)
     }
     
-    convenience init(movie: Movie)
+    @discardableResult convenience init(movie: Movie, onSuccess: ((UIImage) -> ())?, onFailure: ((NetworkError) -> ())?)
     {
-        self.init(path: movie.posterPath)
+        self.init(path: movie.posterPath, onSuccess: onSuccess, onFailure: onFailure)
     }
     
     override func parser() -> Parser<UIImage>

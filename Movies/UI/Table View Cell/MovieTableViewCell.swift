@@ -57,6 +57,8 @@ class MovieTableViewCell: UITableViewCell
         movieOverviewTextView.contentMode = .topLeft
         movieOverviewTextView.isEditable = false
         
+        posterImageView.image = UIImage(named: "Placeholder")
+        
         contentView.addSubview(movieTitleLabel)
         contentView.addSubview(movieOverviewTextView)
         contentView.addSubview(posterImageView)

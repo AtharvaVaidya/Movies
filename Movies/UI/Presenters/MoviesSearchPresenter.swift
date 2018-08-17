@@ -16,8 +16,18 @@ class MoviesSearchPresenter: NSObject
 
     public weak var controller: MovieSearchTableViewController?
     public weak var searchBar: UISearchBar?
-        
-    let queue: OperationQueue = OperationQueue()
+    
+    var searchOperation: Operation = Operation()
+    
+    lazy var queue: OperationQueue =
+    {
+        var queue = OperationQueue()
+        queue.name = "Search Movies Download queue"
+        queue.maxConcurrentOperationCount = 1
+        return queue
+    }()
+    
+    let pendingOperations: PendingOperations = PendingOperations()
     
     var searching: Bool = false
     {
@@ -38,18 +48,29 @@ class MoviesSearchPresenter: NSObject
     
     func search(title: String, _ onSuccess: (([Movie]) -> ())? = nil, _ onFailure: ((NetworkError) -> ())? = nil)
     {
-        queue.addOperation
-        {            
-            SearchMovies(title: title).execute(
-            { (movies) in
-                self.updateModelAndUI(with: movies)
-                onSuccess?(movies)
-            })
-            { (error) in
-                print(error.localizedDescription)
-                onFailure?(error)
-            }
+        self.controller?.showLoadingIndicator()
+        
+        self.searchOperation = SearchMovies(title: title, onSuccess: { (movies) in
+            self.controller?.hideLoadingIndicator()
+            self.updateModelAndUI(with: movies)
+            onSuccess?(movies)
+        }, onFailure: { (error) in
+            print(error.localizedDescription)
+            self.controller?.hideLoadingIndicator()
+            onFailure?(error)
+        })
+        
+        for (_, operation) in self.pendingOperations.downloadsInProgress
+        {
+            self.searchOperation.addDependency(operation)
         }
+        
+        self.queue.addOperation(searchOperation)
+    }
+    
+    func start(operation: Operation)
+    {
+        
     }
     
     func updateModelAndUI(with movies: [Movie])
@@ -78,7 +99,7 @@ extension MoviesSearchPresenter: UISearchBarDelegate
         self.model.data = []
         self.controller?.tableView.reloadData()
         
-        queue.cancelAllOperations()
+//        queue.cancelAllOperations()
         
         search(title: searchText,
         { (movies) in
@@ -142,7 +163,7 @@ extension MoviesSearchPresenter: UITableViewDataSource
         
         let cell: MovieTableViewCell = Factory.TableViewCells.makeMovieTableViewCell(movie: movie, in: tableView)
         
-        self.downloadPoster(movie: movie, for: cell)
+        self.downloadPoster(movie: movie, for: cell, at: indexPath)
         
         return cell
     }
