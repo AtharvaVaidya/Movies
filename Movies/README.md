@@ -1,4 +1,6 @@
-#  Careem Assignment
+#Movies App
+
+This app lets you browse and search movies.
 
 ##Credits for 3rd-code:
  
